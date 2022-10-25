@@ -1,0 +1,12 @@
+{% block body_content %}
+<h3>Id</h3>
+{% for employee in employees %}
+<p>{{employee.employee_id}}</p><hr>
+<h3>Name</h3>
+<p>{{employee.name}}</p><hr>
+<h3>Age</h3>
+<p>{{employee.age}}</p><hr>
+<h3>Position</h3>
+<p>{{employee.position}}</p><hr>
+{% endfor %}
+{% endblock body_content %}
