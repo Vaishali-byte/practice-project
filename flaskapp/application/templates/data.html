@@ -1,0 +1,22 @@
+{% block body_content %}
+
+<h1> This is employee information </h1>
+
+{% for department in departments %}
+<p> {{ department.did }}</p>
+<p>{{ department.name }}</p>
+
+{% endfor %}
+
+{% for employee in employees %}
+<p>{{employee.employee_id}}</p><hr>
+<h3>Name</h3>
+<p>{{employee.name}}</p><hr>
+<h3>Age</h3>
+<p>{{employee.age}}</p><hr>
+<h3>Position</h3>
+<p>{{employee.position}}</p><hr>
+<p>{{employee.fk_did}}</p><hr>
+
+{% endfor %}
+{% endblock body_content %}
