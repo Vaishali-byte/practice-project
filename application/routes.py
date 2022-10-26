@@ -30,8 +30,8 @@ def createdepartment():
 def create():
     form = EmployeeForm()
     if form.validate_on_submit(): 
-        employees = EmployeeModel(name = form.name.data, age = form.age.data, position = form.position.data)
-        fk_did = form.fk_did.data
+        employees = EmployeeModel(name = form.name.data, age = form.age.data, position = form.position.data, fk_did = form.fk_did.data)
+        
         
         db.session.add(employees)
         db.session.commit()
@@ -40,7 +40,7 @@ def create():
     return render_template('createpage.html', title="Employee information is created", form=form)
 
 # UPDATE DEPARTMENT INFORMATION
-@app.route('/data/updatedepartment/<int:id>', methods = ['GET','POST'])
+@app.route('/data/updatedepartment/<int:did>', methods = ['GET','POST'])
 def updatedepartment(did):
     form = DepartmentForm()
 
