@@ -3,10 +3,11 @@ CREATE TABLE IF NOT EXISTS departments (
 	name VARCHAR(20)
 );
 
-CREATE TABLE IF NOT EXISTS EmployeeModel ( 
+CREATE TABLE IF NOT EXISTS employee_model ( 
 	employee_id INT PRIMARY KEY AUTO_INCREMENT,
-	name VARCHAR(20)
-	age INT (11)
-	position VARCHAR(30)
+	name VARCHAR(20),
+	age INT,
+	position VARCHAR(30),
 	fk_did INT,
 	FOREIGN KEY (fk_did) REFERENCES departments(did)
+);

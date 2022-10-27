@@ -1,5 +1,3 @@
-FROM python:3.8
-COPY . .
-RUN pip3 install -r requirements.txt
-EXPOSE 5000
-ENTRYPOINT ["python3", "app.py"]
+FROM mysql:5.7
+ENV MYSQL_DATABASE=flask-db
+COPY ./create.sql docker-entrypoint-initdb.d/create.sql
