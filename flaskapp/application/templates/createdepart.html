@@ -2,7 +2,8 @@
 
 <form action="" method="POST">
     {{ form.hidden_tag() }}
-    <p>Department: {{ form.name }}</p>
+    <p> Name: {{ form.name }}</p>
+    <p> Department ID: {{ form.fk_did }}</p>
     {{ form.submit }}
 </form>
 

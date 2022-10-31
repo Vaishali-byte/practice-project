@@ -1,28 +1,30 @@
 pipeline {
     agent any 
     stages {
-        stage('Install requirements') {
+        stage('Tests') {
             steps {
-                sh "pip3 install -r requirements.txt"
+                dir('flask-app'){
+                    sh "echo this is a test"
+                    // sh "rm application/test/test_int*"
+                    // sh "bash test.sh"
+                }
             }
         }
 
-        stage('Create database') {
+        stage('docker push') {
+            environment {
+                    DOCKER_CRED = credentials('DOCKER_CRED')   
+                }
             steps {
-                sh "python3 create.py"
+                sh "docker-compose build --parallel"
+                sh "docker login -u ${DOCKER_CRED_USR} -p ${DOCKER_CRED_PSW}"
+                sh "docker-compose push" 
             }
         }
-
-        stage('Run the tests'){
-            steps {
-                sh "echo 'This is where your tests are going to go'"
-            }
-        }
-
-        stage('Run the application') {
-            steps {
-                sh "python3 app.py"
-            }
+        stage('docker swarm') { 
+              steps {
+                sh "docker stack deploy --compose-file docker-compose.yaml flask-stack"    
+              }
         }
     }
 }
